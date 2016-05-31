@@ -1,0 +1,68 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.dv.mms.app.domain.master"
+	schema="mms">
+    <class name="MmItem" table="mm_item">
+    
+        <id name="id" type="java.lang.Integer" column="IT_NO" unsaved-value="-1">
+            <generator class="identity"/>
+        </id>
+        
+        <property name="name" type="string" column="IT_NAME" />
+        <property name="rate" type="double" column="IT_RATE"/>
+        <property name="rol" type="double" column="IT_ROL"/>
+        <property name="stock" type="double" column="IT_STOCK"/>        
+        
+        <many-to-one name="mmHeading" class="MmHeading" cascade="none" lazy="false">
+            <column name="HD_NO" length="15"/>
+        </many-to-one>
+        
+        <many-to-one name="mmSubheading" class="MmSubheading" cascade="none" lazy="false">
+            <column name="SH_NO" length="15"/>
+        </many-to-one>        
+        
+        <many-to-one name="mmDimension" class="MmDimension" cascade="none" lazy="false">
+            <column name="DM_NO" length="15"/>
+        </many-to-one>
+        
+        <many-to-one name="mmBrand" class="MmBrand" cascade="none" lazy="false">
+            <column name="BD_NO" length="15"/>
+        </many-to-one>
+        
+        <many-to-one name="mmUom" class="MmUom" cascade="none" lazy="false">
+            <column name="UM_NO" length="15"/>
+        </many-to-one>
+                
+        <many-to-one name="mmModel" class="MmModel" cascade="none" lazy="false">
+            <column name="MD_NO" length="15"/>
+        </many-to-one>
+        
+        <many-to-one name="mmCategory" class="MmCategory" cascade="none" lazy="false">
+            <column name="CT_NO" length="15"/>
+        </many-to-one>
+        
+        <set name="mmGoodsreceiptdetails" inverse="true">
+            <key>
+                <column name="IT_NO" length="15"/>
+            </key>
+            <one-to-many class="MmGoodsreceiptdetail"/>
+        </set>
+        <set name="mmReqdetails" inverse="true">
+            <key>
+                <column name="IT_NO" length="15"/>
+            </key>
+            <one-to-many class="MmReqdetail"/>
+        </set>
+        <set name="mmPodetails" inverse="true">
+            <key>
+                <column name="IT_NO" length="15"/>
+            </key>
+            <one-to-many class="MmPodetail"/>
+        </set>
+        <!-- <set name="mmGoodsissuedetails" inverse="true">
+            <key>
+                <column name="IT_NO" length="15"/>
+            </key>
+            <one-to-many class="MmGoodsissuedetail"/>
+        </set>  -->
+    </class>
+</hibernate-mapping>

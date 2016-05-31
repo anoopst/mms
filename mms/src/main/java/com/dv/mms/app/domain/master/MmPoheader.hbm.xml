@@ -1,0 +1,34 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.dv.mms.app.domain.master"
+	schema="mms">
+	<class name="MmPoheader" table="mm_poheader">
+		<id name="poNo" type="java.lang.Integer" unsaved-value="-1">
+			<column name="PO_NO" length="15" />
+			<generator class="identity" />
+		</id>
+		<property name="poDate" type="date">
+			<column name="PO_DATE" length="10" />
+		</property>
+		<many-to-one name="mmReqheader" class="MmReqheader"
+			cascade="none" lazy="false">
+			<column name="RH_NO" length="15" />
+		</many-to-one>
+		<many-to-one name="mmVendor" class="MmVendor" cascade="none" lazy="false">
+			<column name="VN_NO" length="15" />
+		</many-to-one>
+		<set name="mmPodetails" inverse="true" cascade="all" lazy="false">
+			<key>
+				<column name="PO_NO" length="15" />
+			</key>
+			<one-to-many class="MmPodetail" />
+		</set>
+		<property name="poStatus" column="PO_STATUS"/>
+		<property name="poType" column="PO_TYPE"/>
+		<!-- <set name="mmGoodsreceiptheaders" inverse="true">
+			<key>
+				<column name="PO_NO" length="15" />
+			</key>
+			<one-to-many class="MmGoodsreceiptheader" />
+		</set>  -->
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Heading" language="java" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="832" leftMargin="5" rightMargin="5" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1"/>
+	<queryString>
+		<![CDATA[Select it.IT_NO,it.IT_NAME,a.HD_NAME, b.SH_NAME, c.BD_NAME, d.CT_NAME, e.MD_NAME, f.DM_NAME, g.UM_NAME
+from mm_item it, mm_heading a, mm_subheading b, mm_brand c, mm_category d,mm_model e, mm_dimension f, mm_UOM g
+Where it.HD_NO = a.HD_NO  and it.SH_NO = b.SH_NO and it.BD_NO = c.BD_NO and it.CT_NO = d.CT_NO and it.MD_NO = e.MD_NO and it.DM_NO = f.DM_NO and it.UM_NO = g.UM_NO]]>
+	</queryString>
+	<field name="IT_NO" class="java.lang.Long"/>
+	<field name="IT_NAME" class="java.lang.String"/>
+	<field name="HD_NAME" class="java.lang.String"/>
+	<field name="SH_NAME" class="java.lang.String"/>
+	<field name="BD_NAME" class="java.lang.String"/>
+	<field name="CT_NAME" class="java.lang.String"/>
+	<field name="MD_NAME" class="java.lang.String"/>
+	<field name="DM_NAME" class="java.lang.String"/>
+	<field name="UM_NAME" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="10" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" x="2" y="0" width="439" height="35"/>
+				<textElement textAlignment="Left">
+					<font fontName="Book Antiqua" size="24"/>
+				</textElement>
+				<text><![CDATA[Item Master List]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="50" y="12" width="112" height="20"/>
+				<textElement>
+					<font fontName="Book Antiqua" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Item Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="12" width="35" height="20"/>
+				<textElement>
+					<font fontName="Book Antiqua" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[S.No]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="830" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="35" width="830" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="202" y="12" width="100" height="20"/>
+				<textElement>
+					<font fontName="Book Antiqua" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Heading]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="304" y="12" width="100" height="20"/>
+				<textElement>
+					<font fontName="Book Antiqua" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sub Heading]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="406" y="12" width="72" height="20"/>
+				<textElement>
+					<font fontName="Book Antiqua" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Brand]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="12" width="75" height="20"/>
+				<textElement>
+					<font fontName="Book Antiqua" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Category]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="560" y="12" width="66" height="20"/>
+				<textElement>
+					<font fontName="Book Antiqua" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Model]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="630" y="12" width="80" height="20"/>
+				<textElement>
+					<font fontName="Book Antiqua" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dimension]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="710" y="12" width="58" height="20"/>
+				<textElement>
+					<font fontName="Book Antiqua" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UOM]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="50" y="0" width="149" height="20"/>
+				<textElement>
+					<font fontName="Book Antiqua"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{IT_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="11" y="0" width="29" height="20"/>
+				<textElement>
+					<font fontName="Book Antiqua"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="304" y="1" width="100" height="20"/>
+				<textElement>
+					<font fontName="Book Antiqua"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{SH_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="406" y="1" width="72" height="20"/>
+				<textElement>
+					<font fontName="Book Antiqua"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{BD_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="202" y="0" width="100" height="20"/>
+				<textElement>
+					<font fontName="Book Antiqua"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{HD_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="1" width="75" height="20"/>
+				<textElement>
+					<font fontName="Book Antiqua"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{CT_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="560" y="1" width="66" height="20"/>
+				<textElement>
+					<font fontName="Book Antiqua"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{MD_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="630" y="1" width="70" height="20"/>
+				<textElement>
+					<font fontName="Book Antiqua"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{DM_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="710" y="0" width="58" height="20"/>
+				<textElement>
+					<font fontName="Book Antiqua"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{UM_NAME}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="8" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="0" width="830" height="1"/>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="32" splitType="Stretch">
+			<textField>
+				<reportElement x="732" y="0" width="100" height="20"/>
+				<textElement>
+					<font fontName="Book Antiqua"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="8" splitType="Stretch"/>
+	</summary>
+</jasperReport>

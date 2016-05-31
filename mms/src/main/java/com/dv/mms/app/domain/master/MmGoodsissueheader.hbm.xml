@@ -1,0 +1,26 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.dv.mms.app.domain.master"
+	schema="mms">
+    <class name="MmGoodsissueheader" table="mm_goodsissueheader">
+        <id name="gihNo" type="java.lang.Integer" unsaved-value="-1">
+            <column name="GIH_NO" length="15"/>
+            <generator class="identity"/>
+        </id>
+        <property name="gihDate" type="date">
+            <column name="GIH_DATE" length="10"/>
+        </property>
+        <many-to-one name="mmVehicle" class="MmVehicle" cascade="none" lazy="false">
+			<column name="VH_NO" length="15" />
+		</many-to-one>
+		<many-to-one name="mmUser" class="MmUser" cascade="none" lazy="false">
+			<column name="US_NO" length="15" />
+		</many-to-one>
+		<property name="status"/>
+        <set name="mmGoodsissuedetails" inverse="true">
+            <key>
+                <column name="GIH_NO" length="15" not-null="true"/>
+            </key>
+            <one-to-many class="MmGoodsissuedetail"/>
+        </set>
+    </class>
+</hibernate-mapping>

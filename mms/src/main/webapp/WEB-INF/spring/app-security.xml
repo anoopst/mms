@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<http auto-config="true" use-expressions="true">		
+		<intercept-url pattern="/jsp/home.jsp" 	access="hasAnyRole('Admin','Requestor','Approver','DataEntry')" />
+		<intercept-url pattern="/iconfig/autocomplt/**" access="permitAll" />
+		<intercept-url pattern="/iconfig/**" access="hasAnyRole('Admin','DataEntry')" />
+		<intercept-url pattern="/item/autocomplt/**" access="permitAll" />
+		<intercept-url pattern="/item/**" access="hasAnyRole('Admin','DataEntry')" />
+		<intercept-url pattern="/user/autocomplt/**" access="permitAll" />
+		<intercept-url pattern="/user/**" access="hasRole('Admin')" />
+		<intercept-url pattern="/vehicle/autocomplt/**" access="permitAll" />
+		<intercept-url pattern="/vehicle/**" access="hasAnyRole('Admin','DataEntry')" />
+		<intercept-url pattern="/vendor/autocomplt/**" access="permitAll" />
+		<intercept-url pattern="/vendor/**" access="hasAnyRole('Admin','DataEntry')" />
+
+		<intercept-url pattern="/request/list/**" access="hasAnyRole('Admin','Approver')" />
+		<intercept-url pattern="/request/alist/**" access="hasAnyRole('Admin','Approver')" />
+		<intercept-url pattern="/request/**/item/search/**" access="hasAnyRole('Admin','Requestor','Approver')" />
+		<intercept-url pattern="/request/**/item/search1/**" access="hasAnyRole('Admin','Requestor','Approver')" />
+		<intercept-url pattern="/request/**/approve/**" access="hasAnyRole('Admin','Approver')" />
+		<intercept-url pattern="/request/**/forapproval/**" access="hasAnyRole('Admin','Approver')" />
+		<intercept-url pattern="/request/**/id" access="hasAnyRole('Admin','Requestor','Approver')" />
+		<intercept-url pattern="/request/**" access="hasAnyRole('Admin','Requestor')" />
+		<!-- <intercept-url pattern="/request/**/save/**" access="hasRole('Requestor')" 
+			/> <intercept-url pattern="/request/**/cancel/**" access="hasRole('Requestor')" 
+			/> <intercept-url pattern="/request/**/item/**" access="hasRole('Requestor')"/> -->
+
+		<intercept-url pattern="/gi/**" access="hasAnyRole('Admin','Approver','DataEntry')" />
+		<intercept-url pattern="/gr/item/search/**" access="hasAnyRole('Requestor','Approver','Admin','DataEntry')" />
+		<intercept-url pattern="/gr/**" access="hasAnyRole('Admin','Approver','DataEntry')" />
+		<intercept-url pattern="/po/**" access="hasAnyRole('Admin','Approver','DataEntry')" />
+		<intercept-url pattern="/aa/resetpassword" access="hasRole('Admin')" />
+		<intercept-url pattern="/report/**" access="permitAll"/>
+		<intercept-url pattern="/**" access="permitAll" />
+		<form-login login-page="/aa/login" />
+		<logout invalidate-session="true" logout-success-url="/" logout-url="/logout" />
+	</http>
+
+	<authentication-manager>
+		<authentication-provider user-service-ref="userAAService">
+			<password-encoder ref="passwordEncoder" />
+		</authentication-provider>
+	</authentication-manager>
+
+</beans:beans>

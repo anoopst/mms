@@ -1,0 +1,20 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.dv.mms.app.domain.master"
+	schema="mms">
+	<class name="MmGoodsreceiptdetail" table="mm_goodsreceiptdetail">
+
+		<id name="grdNo" column="grd_no" type="java.lang.Integer" unsaved-value="-1">
+			<generator class="identity" />
+		</id>
+		<many-to-one name="mmGoodsreceiptheader" class="MmGoodsreceiptheader"
+			cascade="none">
+			<column name="GRH_NO" length="15" />
+		</many-to-one>
+		<many-to-one name="mmItem" class="MmItem" cascade="all" lazy="false">
+			<column name="IT_NO" length="15" />
+		</many-to-one>
+		<property name="grhDesc" column="GRH_DESC" type="string" />
+		<property name="grhQty" column="GRH_QTY" type="double"
+			precision="22" />
+	</class>
+</hibernate-mapping>

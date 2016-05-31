@@ -1,0 +1,27 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.dv.mms.app.domain.master"
+	schema="mms">
+	<class name="MmPodetail" table="mm_podetail">
+		<id name="pdNo" column="pd_no" type="java.lang.Integer" unsaved-value="-1">
+			<generator class="identity" />
+		</id>
+		<many-to-one name="mmPoheader" class="MmPoheader" cascade="none">
+			<column name="PO_NO" length="15" />
+		</many-to-one>
+		<many-to-one name="mmItem" class="MmItem" lazy="false" cascade="none">
+			<column name="IT_NO" length="15" />
+		</many-to-one>
+		<property name="poDesc" type="string" column="PO_DESC"
+			length="100" />
+		<property name="poQty" type="double" column="PO_QTY"
+			precision="22" />
+		<property name="poRate" type="double" column="PO_RATE"
+			precision="22" />
+		<property name="poAmt" type="double" column="PO_AMT"
+			precision="22" />
+		<property name="grQty" type="double" column="GR_QTY"
+			precision="22" />
+		<property name="giQty" type="double" column="GI_QTY"
+			precision="22" />
+	</class>
+</hibernate-mapping>

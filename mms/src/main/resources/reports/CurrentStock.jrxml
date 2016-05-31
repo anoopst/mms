@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CurrentStock" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.4641000000000006"/>
+	<property name="ireport.x" value="130"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[Select itm.IT_NAME,(itm.IT_STOCK + (Select IFNULL(SUM(gid.GID_QTY),0) from mm_goodsissuedetail gid, mm_goodsissueheader gih Where gih.GIH_NO = gid.GIH_NO and gid.IT_NO = itm.IT_NO ) - (Select IFNULL(SUM(grd.GRH_QTY),0) from mm_goodsreceiptdetail grd, mm_goodsreceiptheader grh
+Where grh.GRH_NO = grd.GRH_NO and grd.IT_NO = itm.IT_NO)) as IT_STOCK,(Select IFNULL(SUM(grd.GRH_QTY),0) from mm_goodsreceiptdetail grd Where grd.IT_NO = itm.IT_NO) as RECEIPTQTY, (Select IFNULL(SUM(gid.GID_QTY),0) from mm_goodsissuedetail gid Where gid.IT_NO = itm.IT_NO) as ISSUEQTY , uom.UM_NAME From mm_item itm,mm_uom uom Where itm.UM_NO =uom.UM_NO]]>
+	</queryString>
+	<field name="IT_NAME" class="java.lang.String"/>
+	<field name="IT_STOCK" class="java.lang.Double"/>
+	<field name="RECEIPTQTY" class="java.lang.Double"/>
+	<field name="ISSUEQTY" class="java.lang.Double"/>
+	<field name="UM_NAME" class="java.lang.String"/>
+	<variable name="Clos_bal" class="java.lang.Double">
+		<variableExpression><![CDATA[(($F{IT_STOCK}+$F{RECEIPTQTY})-$F{ISSUEQTY})]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="35"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Current Stock]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="139" y="0" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Item Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="72" y="0" width="29" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[S.No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="397" y="0" width="57" height="30"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Closing Balance]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="25" width="550" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="550" height="1"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="72" y="0" width="21" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="397" y="0" width="57" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{Clos_bal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="139" y="1" width="201" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{IT_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="457" y="0" width="23" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{UM_NAME}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="4" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="28" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="2" width="550" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="481" y="3" width="41" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

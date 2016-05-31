@@ -1,0 +1,21 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.dv.mms.app.domain.master"
+	schema="mms">
+	<class name="MmGoodsreceiptheader" table="mm_goodsreceiptheader">
+		<id name="grhNo" column="GRH_NO" type="java.lang.Integer" unsaved-value="-1">			
+			<generator class="identity"/>
+		</id>
+		<property name="grhDate" type="date">
+			<column name="GRH_DATE"/>
+		</property>
+		<many-to-one name="mmPoheader" class="MmPoheader" cascade="all" lazy="false">
+			<column name="PO_NO"/>
+		</many-to-one>
+		<set name="mmGoodsreceiptdetails" inverse="true" cascade="all" lazy="false">
+			<key>
+				<column name="GRH_NO" length="15" />
+			</key>
+			<one-to-many class="MmGoodsreceiptdetail" />
+		</set>
+	</class>
+</hibernate-mapping>

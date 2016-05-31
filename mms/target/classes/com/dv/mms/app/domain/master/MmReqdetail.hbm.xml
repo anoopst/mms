@@ -1,0 +1,19 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.dv.mms.app.domain.master"
+	schema="mms">
+	<class name="MmReqdetail" table="mm_reqdetail">
+		<id name="rdNo" type="java.lang.Integer" column="RD_NO" unsaved-value="-1">
+			<generator class="identity" />
+		</id>
+		<many-to-one name="mmReqheader" class="MmReqheader"
+			cascade="none">
+			<column name="RH_NO" length="15" />
+		</many-to-one>
+		<many-to-one name="mmItem" class="MmItem" cascade="none">
+			<column name="IT_NO" length="15" />
+		</many-to-one>
+		<property name="itDesc" column="IT_DESC" type="string" />
+		<property name="rdQty" column="RD_QTY" type="double" />
+		<property name="poQty" column="PO_QTY" type="double" />
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,18 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.dv.mms.app.domain.master"
+	schema="mms">
+	<class name="MmGoodsissuedetail" table="mm_goodsissuedetail">
+		<id name="gidNo" column="GID_NO" type="java.lang.Integer" unsaved-value="-1">
+			<generator class="identity" />
+		</id>
+		<many-to-one name="mmGoodsissueheader" class="MmGoodsissueheader" cascade="none">
+			<column name="GIH_NO" />
+		</many-to-one>
+		<many-to-one name="mmItem" class="MmItem" cascade="none" lazy="false">
+			<column name="IT_NO" length="15" />
+		</many-to-one>
+		<property name="gidDesc" column="GID_DESC" type="string" />
+		<property name="gidQty" column="GID_QTY" type="double"
+			precision="22" />		
+	</class>
+</hibernate-mapping>

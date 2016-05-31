@@ -1,0 +1,12 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.dv.mms.app.domain.master"
+	schema="mms">
+	<class name="MmSubheading" table="mm_subheading">
+		<id name="id" type="java.lang.Integer" column="SH_NO" unsaved-value="-1">
+			<generator class="identity" />
+		</id>
+		<property name="name" type="string">
+			<column name="SH_NAME" length="50" />
+		</property>
+	</class>
+</hibernate-mapping>

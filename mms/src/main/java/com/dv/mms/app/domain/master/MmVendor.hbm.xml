@@ -1,0 +1,32 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.dv.mms.app.domain.master"
+	schema="mms">
+	<class name="MmVendor" table="mm_vendor">
+		<id name="id" type="java.lang.Integer" unsaved-value="-1">
+			<column name="VN_NO" length="15" />
+			<generator class="identity" />
+		</id>
+		<property name="name" type="string">
+			<column name="VN_NAME" length="50" />
+		</property>
+		<property name="add1" type="string">
+			<column name="VN_ADD1" length="50" />
+		</property>
+		<property name="add2" type="string">
+			<column name="VN_ADD2" length="50" />
+		</property>
+		<property name="add3" type="string">
+			<column name="VN_ADD3" length="50" />
+		</property>
+		<property name="add4" type="string">
+			<column name="VN_ADD4" length="50" />
+		</property>
+		<property name="venType" type="string" column="VN_TYPE"/>
+		<set name="mmPoheaders" inverse="true">
+			<key>
+				<column name="VN_NO" length="15" />
+			</key>
+			<one-to-many class="MmPoheader" />
+		</set>
+	</class>
+</hibernate-mapping>
